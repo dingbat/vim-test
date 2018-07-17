@@ -1,9 +1,9 @@
 source spec/support/helpers.vim
 
-describe "Cucumber"
+describe "Gherkin"
 
   before
-    cd spec/fixtures/cucumber
+    cd spec/fixtures/gherkin
   end
 
   after
@@ -30,6 +30,17 @@ describe "Cucumber"
     TestSuite
 
     Expect g:test#last_command == 'cucumber'
+  end
+
+  it "uses whatever gherkin framework is given"
+    let g:test#ruby#gherkin#framework = 'spinach'
+
+    view features/normal.feature
+    TestSuite
+
+    Expect g:test#last_command == 'spinach'
+
+    unlet g:test#ruby#gherkin#framework
   end
 
 end
