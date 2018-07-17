@@ -1,7 +1,3 @@
-if !exists('g:test#ruby#gherkin#framework')
-  let g:test#ruby#gherkin#framework = 'cucumber'
-endif
-
 if !exists('g:test#ruby#gherkin#file_pattern')
   let g:test#ruby#cucumber#file_pattern = '\v\.feature$'
 endif
@@ -33,13 +29,14 @@ function! test#ruby#gherkin#build_args(args) abort
 endfunction
 
 function! test#ruby#gherkin#executable() abort
+  let framework = get(g:, 'test#ruby#gherkin#framework', 'cucumber')
   if !empty(glob('.zeus.sock'))
-    return 'zeus ' . g:test#ruby#gherkin#framework
-  elseif filereadable('./bin/' . g:test#ruby#gherkin#framework) && get(g:, 'test#ruby#use_binstubs', 1)
-    return './bin/' . g:test#ruby#gherkin#framework
+    return 'zeus '.framework
+  elseif filereadable('./bin/'.framework) && get(g:, 'test#ruby#use_binstubs', 1)
+    return './bin/'.framework
   elseif filereadable('Gemfile') && get(g:, 'test#ruby#bundle_exec', 1)
-    return 'bundle exec ' . g:test#ruby#gherkin#framework
+    return 'bundle exec '.framework
   else
-    return g:test#ruby#gherkin#framework
+    return framework
   endif
 endfunction
