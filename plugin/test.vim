@@ -6,7 +6,7 @@ let g:loaded_test = 1
 let g:test#plugin_path = expand('<sfile>:p:h:h')
 
 let g:test#default_runners = {
-  \ 'Ruby':       ['Rails', 'M', 'Minitest', 'RSpec', 'Cucumber'],
+  \ 'Ruby':       ['Rails', 'M', 'Minitest', 'RSpec', 'Gherkin'],
   \ 'JavaScript': ['Ava', 'CucumberJS', 'Intern', 'TAP', 'Karma', 'Lab', 'Mocha', 'Jasmine', 'Jest', 'WebdriverIO'],
   \ 'Python':     ['DjangoTest', 'PyTest', 'PyUnit', 'Nose', 'Nose2'],
   \ 'Elixir':     ['ExUnit', 'ESpec'],
